@@ -1,0 +1,12 @@
+{
+  "name": "r3-775-drill",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@immediately-run/sdk": "0.54.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "description": "R3-775 live drill: creates the space, writes the self bundle, edits code/page for the re-offer differential"
+}
