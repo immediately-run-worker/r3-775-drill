@@ -7,6 +7,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import fs from 'fs';
 import { createSpace, mount as mountById, openSettings, requestSpace } from '@immediately-run/sdk/mounts';
+import { BUNDLE_LOCK } from './bundleLock';
 
 const SPACE_NAME = 'R3-775 self drill';
 const DEFAULT_SPACE = 'xUkJE8mHYnejJubSlVnb'; // venue-themes-2
@@ -96,6 +97,7 @@ export default function App() {
     await fs.promises.mkdir(bundle, { recursive: true });
     await fs.promises.writeFile(bundle + '/immediately.run.json', BUNDLE_MARKER);
     await fs.promises.writeFile(bundle + '/package.json', BUNDLE_PKG);
+    await fs.promises.writeFile(bundle + '/package-lock.json', BUNDLE_LOCK);
     await fs.promises.mkdir(bundle + '/src', { recursive: true });
     await fs.promises.writeFile(bundle + '/src/App.tsx', BUNDLE_APP_V1);
     await fs.promises.mkdir(bundle + '/pages', { recursive: true });
