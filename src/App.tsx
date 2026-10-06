@@ -12,7 +12,23 @@ const SPACE_NAME = 'R3-775 self drill';
 const DEFAULT_SPACE = 'xUkJE8mHYnejJubSlVnb'; // venue-themes-2
 
 const BUNDLE_MARKER = JSON.stringify({ opensWith: { self: true } }, null, 2) + '\n';
-const BUNDLE_PKG = JSON.stringify({ name: 'self-drill', main: 'src/App.tsx' }, null, 2) + '\n';
+// R3-937: the bundle must declare its runtime deps — the platform serves the
+// SDK 0.16.0 default and no react-refresh to an undeclared package.json, and
+// the generated entry imports `@immediately-run/sdk/boot` regardless.
+const BUNDLE_PKG =
+  JSON.stringify(
+    {
+      name: 'self-drill',
+      main: 'src/App.tsx',
+      dependencies: {
+        react: '^19.2.5',
+        'react-dom': '^19.2.5',
+        '@immediately-run/sdk': '0.54.0',
+      },
+    },
+    null,
+    2,
+  ) + '\n';
 const BUNDLE_APP_V1 = [
   'export default function App() {',
   '  return (',
